@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+    <ThingDef ParentName="BuildingBase" Name="Corvus_LogisticsConduitBase">
+        <defName>Corvus_LogisticsConduit</defName>
+        <label>logistics conduit</label>
+        <description>A conduit-like logistics line used to form a production network between nearby worktables and storage buildings.</description>
+        <thingClass>CorvusProductionLogistics.Building_LogisticsConduit</thingClass>
+        <category>Building</category>
+        <noRightClickDraftAttack>true</noRightClickDraftAttack>
+        <graphicData>
+            <texPath>Things/Building/Linked/PowerConduit_Atlas</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <linkType>Transmitter</linkType>
+            <linkFlags>
+                <li>PowerConduit</li>
+            </linkFlags>
+            <damageData>
+                <rect>(0,0.35,1,0.3)</rect>
+            </damageData>
+        </graphicData>
+        <uiIconPath>Things/Building/Linked/PowerConduit_MenuIcon</uiIconPath>
+        <uiIconScale>0.7</uiIconScale>
+        <building>
+            <ai_chillDestination>false</ai_chillDestination>
+            <isInert>true</isInert>
+            <isEdifice>false</isEdifice>
+            <canLandGravshipOn>true</canLandGravshipOn>
+            <blueprintGraphicData>
+                <texPath>Things/Building/Linked/PowerConduit_Blueprint_Atlas</texPath>
+            </blueprintGraphicData>
+            <canConstructInCorner>true</canConstructInCorner>
+        </building>
+        <drawerType>MapMeshOnly</drawerType>
+        <altitudeLayer>Conduits</altitudeLayer>
+        <passability>Standable</passability>
+        <leaveResourcesWhenKilled>false</leaveResourcesWhenKilled>
+        <resourcesFractionWhenDeconstructed>0</resourcesFractionWhenDeconstructed>
+        <statBases>
+            <MaxHitPoints>80</MaxHitPoints>
+            <WorkToBuild>35</WorkToBuild>
+            <Flammability>0.7</Flammability>
+            <Beauty>-1</Beauty>
+        </statBases>
+        <drawStyleCategory>Conduits</drawStyleCategory>
+        <costList>
+            <Steel>1</Steel>
+        </costList>
+        <placeWorkers>
+            <li>CorvusProductionLogistics.PlaceWorker_LogisticsConduit</li>
+        </placeWorkers>
+        <rotatable>false</rotatable>
+        <selectable>true</selectable>
+        <neverMultiSelect>true</neverMultiSelect>
+        <soundImpactDefault>BulletImpact_Metal</soundImpactDefault>
+        <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+        <designationCategory>Storage</designationCategory>
+        <uiOrder>2010</uiOrder>
+        <constructEffect>ConstructMetal</constructEffect>
+        <clearBuildingArea>false</clearBuildingArea>
+        <designationHotKey>Misc1</designationHotKey>
+        <researchPrerequisites>
+            <li>Corvus_ProductionLogistics</li>
+        </researchPrerequisites>
+        <replaceTags>
+            <li>Conduit</li>
+        </replaceTags>
+    </ThingDef>
+
+    <ThingDef ParentName="Corvus_LogisticsConduitBase">
+        <defName>Corvus_HiddenLogisticsConduit</defName>
+        <label>hidden logistics conduit</label>
+        <description>Hidden logistics tubing for linking worktables and storage buildings without leaving visible conduit lines on the floor.</description>
+        <graphicData>
+            <color>(0,0,0,0)</color>
+            <shaderType>Transparent</shaderType>
+        </graphicData>
+        <statBases>
+            <MaxHitPoints>100</MaxHitPoints>
+            <WorkToBuild>280</WorkToBuild>
+            <Flammability>0</Flammability>
+            <Beauty>0</Beauty>
+        </statBases>
+        <uiIconPath>Things/Building/Linked/HiddenConduit_MenuIcon</uiIconPath>
+        <designationHotKey>Misc9</designationHotKey>
+        <costList>
+            <Steel>2</Steel>
+        </costList>
+        <constructEffect>ConstructDirt</constructEffect>
+        <building>
+            <ai_neverTrashThis>true</ai_neverTrashThis>
+            <isTargetable>false</isTargetable>
+            <expandHomeArea>false</expandHomeArea>
+            <canBeDamagedByAttacks>false</canBeDamagedByAttacks>
+        </building>
+    </ThingDef>
+
+    <ThingDef ParentName="StorageShelfBase">
+        <defName>Corvus_LogisticsHopper</defName>
+        <label>input logistics hopper</label>
+        <description>A small logistics endpoint that accepts items from adjacent machines or external mod systems, then pushes them into valid connected storage on the logistics network.</description>
+        <thingClass>CorvusProductionLogistics.Building_InputLogisticsHopper</thingClass>
+        <graphicData>
+            <texPath>Things/Building/Furniture/ShelfSmall</texPath>
+            <graphicClass>Graphic_Multi</graphicClass>
+            <drawSize>(2,2)</drawSize>
+            <color>(0.55,0.8,0.95)</color>
+        </graphicData>
+        <tickerType>Normal</tickerType>
+        <size>(1,1)</size>
+        <designationCategory>Storage</designationCategory>
+        <uiOrder>2020</uiOrder>
+        <costStuffCount>15</costStuffCount>
+        <costList>
+            <ComponentIndustrial>1</ComponentIndustrial>
+        </costList>
+        <statBases>
+            <MaxHitPoints>80</MaxHitPoints>
+            <Mass>5</Mass>
+            <WorkToBuild>350</WorkToBuild>
+            <Flammability>0.4</Flammability>
+            <Beauty>0</Beauty>
+        </statBases>
+        <building>
+            <storageGroupTag>CorvusLogisticsHopper</storageGroupTag>
+            <preventDeteriorationOnTop>true</preventDeteriorationOnTop>
+            <ignoreStoredThingsBeauty>true</ignoreStoredThingsBeauty>
+            <maxItemsInCell>3</maxItemsInCell>
+            <blueprintClass>Blueprint_Storage</blueprintClass>
+            <fixedStorageSettings>
+                <filter>
+                    <disallowNotEverStorable>true</disallowNotEverStorable>
+                    <categories>
+                        <li>Root</li>
+                    </categories>
+                    <disallowedCategories>
+                        <li>Buildings</li>
+                    </disallowedCategories>
+                    <disallowedThingDefs MayRequire="Ludeon.RimWorld.Biotech">
+                        <li MayRequire="Ludeon.RimWorld.Biotech">Wastepack</li>
+                    </disallowedThingDefs>
+                    <specialFiltersToDisallow>
+                        <li>AllowLargeCorpses</li>
+                    </specialFiltersToDisallow>
+                </filter>
+            </fixedStorageSettings>
+            <defaultStorageSettings>
+                <priority>Preferred</priority>
+                <filter>
+                    <categories>
+                        <li>Root</li>
+                    </categories>
+                    <disallowedCategories>
+                        <li>Buildings</li>
+                    </disallowedCategories>
+                    <disallowedThingDefs MayRequire="Ludeon.RimWorld.Biotech">
+                        <li MayRequire="Ludeon.RimWorld.Biotech">Wastepack</li>
+                    </disallowedThingDefs>
+                    <specialFiltersToDisallow>
+                        <li>AllowLargeCorpses</li>
+                    </specialFiltersToDisallow>
+                </filter>
+            </defaultStorageSettings>
+            <relatedBuildCommands>
+                <li>Corvus_LogisticsConduit</li>
+                <li>Corvus_HiddenLogisticsConduit</li>
+            </relatedBuildCommands>
+        </building>
+        <inspectorTabs Inherit="False" />
+        <researchPrerequisites>
+            <li>Corvus_ProductionLogistics</li>
+        </researchPrerequisites>
+    </ThingDef>
+
+    <ThingDef ParentName="StorageShelfBase">
+        <defName>Corvus_OutputLogisticsHopper</defName>
+        <label>static output logistics hopper</label>
+        <description>A small logistics endpoint that pulls items matching its storage filter from connected storage and exposes them for adjacent machines or external mod systems.</description>
+        <thingClass>CorvusProductionLogistics.Building_OutputLogisticsHopper</thingClass>
+        <graphicData>
+            <texPath>Things/Building/Furniture/ShelfSmall</texPath>
+            <graphicClass>Graphic_Multi</graphicClass>
+            <drawSize>(2,2)</drawSize>
+            <color>(0.95,0.8,0.55)</color>
+        </graphicData>
+        <tickerType>Normal</tickerType>
+        <size>(1,1)</size>
+        <designationCategory>Storage</designationCategory>
+        <uiOrder>2021</uiOrder>
+        <costStuffCount>15</costStuffCount>
+        <costList>
+            <ComponentIndustrial>1</ComponentIndustrial>
+        </costList>
+        <statBases>
+            <MaxHitPoints>80</MaxHitPoints>
+            <Mass>5</Mass>
+            <WorkToBuild>350</WorkToBuild>
+            <Flammability>0.4</Flammability>
+            <Beauty>0</Beauty>
+        </statBases>
+        <building>
+            <storageGroupTag>CorvusOutputLogisticsHopper</storageGroupTag>
+            <preventDeteriorationOnTop>true</preventDeteriorationOnTop>
+            <ignoreStoredThingsBeauty>true</ignoreStoredThingsBeauty>
+            <maxItemsInCell>3</maxItemsInCell>
+            <blueprintClass>Blueprint_Storage</blueprintClass>
+            <fixedStorageSettings>
+                <filter>
+                    <disallowNotEverStorable>true</disallowNotEverStorable>
+                    <categories>
+                        <li>Root</li>
+                    </categories>
+                    <disallowedCategories>
+                        <li>Buildings</li>
+                    </disallowedCategories>
+                    <disallowedThingDefs MayRequire="Ludeon.RimWorld.Biotech">
+                        <li MayRequire="Ludeon.RimWorld.Biotech">Wastepack</li>
+                    </disallowedThingDefs>
+                    <specialFiltersToDisallow>
+                        <li>AllowLargeCorpses</li>
+                    </specialFiltersToDisallow>
+                </filter>
+            </fixedStorageSettings>
+            <defaultStorageSettings>
+                <priority>Preferred</priority>
+                <filter>
+                    <categories>
+                        <li>Foods</li>
+                        <li>Manufactured</li>
+                        <li>ResourcesRaw</li>
+                        <li>Items</li>
+                        <li>Weapons</li>
+                        <li>Apparel</li>
+                        <li>BodyParts</li>
+                        <li>Chunks</li>
+                    </categories>
+                </filter>
+            </defaultStorageSettings>
+            <relatedBuildCommands>
+                <li>Corvus_LogisticsConduit</li>
+                <li>Corvus_HiddenLogisticsConduit</li>
+            </relatedBuildCommands>
+        </building>
+        <researchPrerequisites>
+            <li>Corvus_ProductionLogistics</li>
+        </researchPrerequisites>
+    </ThingDef>
+</Defs>

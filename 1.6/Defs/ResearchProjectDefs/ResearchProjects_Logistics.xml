@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+    <ResearchProjectDef>
+        <defName>Corvus_ProductionLogistics</defName>
+        <label>production logistics</label>
+        <description>Industrial logistics infrastructure for linking worktables and storage through dedicated conduit networks.</description>
+        <baseCost>800</baseCost>
+        <techLevel>Industrial</techLevel>
+        <tab>Main</tab>
+        <prerequisites>
+            <li>Electricity</li>
+        </prerequisites>
+    </ResearchProjectDef>
+</Defs>

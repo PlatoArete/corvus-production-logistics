@@ -1,0 +1,14 @@
+bin/
+obj/
+.vs/
+.vscode/
+TestResults/
+*.user
+*.suo
+*.cache
+*.tmp
+*.pdb
+*.mdb
+*.csproj.user
+1.6/Assemblies/
+

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ModMetaData>
+    <name>Corvus Production Logistics</name>
+    <author>andre</author>
+    <supportedVersions>
+        <li>1.6</li>
+    </supportedVersions>
+    <packageId>andre.corvusproductionlogistics</packageId>
+    <description>Tier 1 logistics infrastructure for connecting storage and worktables through buildable conduit networks.</description>
+</ModMetaData>
+
