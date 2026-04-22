@@ -9,6 +9,7 @@ The MVP goal for Tier 1 is:
 - detection of linked storage buildings and worktables on the same conduit run
 - linked-storage ingredient availability for vanilla bill work
 - output routing back into valid connected storage for non-`Drop on floor` bills
+- logistics input/output hoppers for machines that interact through storage cells
 
 ## Repository Layout
 
@@ -33,14 +34,14 @@ Implemented:
 - completed products route into valid connected storage for stockpile output modes
 - explicit `Drop on floor` output remains vanilla behavior
 - harvested crops from connected plant growers/hydroponics basins route into valid connected storage
-- a 1x1 logistics hopper storage endpoint for compatibility with production buildings that do not use vanilla bills
+- 1x1 input and output logistics hoppers for compatibility with production buildings that do not use vanilla bills
+- storage footprints participate in logistics networks, so storage buildings connect naturally without conduit around every occupied tile
+- noisy logistics debug logging is disabled by default while the debug helpers remain in source for targeted testing
 
 Still to validate:
 
-- broader vanilla bench coverage
-- modded worktables that use vanilla bills
-- modded storage buildings that use vanilla storage groups
-- special/custom production systems
+- Fiann's Hauling compatibility
+- broader special/custom production systems
 
 ## Build
 

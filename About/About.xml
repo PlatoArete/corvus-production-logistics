@@ -6,6 +6,5 @@
         <li>1.6</li>
     </supportedVersions>
     <packageId>andre.corvusproductionlogistics</packageId>
-    <description>Tier 1 logistics infrastructure for connecting storage and worktables through buildable conduit networks.</description>
+    <description>Industrial production logistics for connecting storage, worktables, hoppers, and supported grow zones through buildable conduit networks.</description>
 </ModMetaData>
-

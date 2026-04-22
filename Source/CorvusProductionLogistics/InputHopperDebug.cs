@@ -6,7 +6,7 @@ namespace CorvusProductionLogistics;
 
 public static class InputHopperDebug
 {
-    public static bool Enabled = true;
+    public static bool Enabled = false;
 
     public static bool TryGetInputHopperAtCell(Map map, IntVec3 cell, out Building_InputLogisticsHopper hopper)
     {

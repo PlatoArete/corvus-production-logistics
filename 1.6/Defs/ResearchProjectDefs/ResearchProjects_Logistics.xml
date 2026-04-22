@@ -3,7 +3,7 @@
     <ResearchProjectDef>
         <defName>Corvus_ProductionLogistics</defName>
         <label>production logistics</label>
-        <description>Industrial logistics infrastructure for linking worktables and storage through dedicated conduit networks.</description>
+        <description>Industrial logistics infrastructure for linking storage, worktables, hoppers, and supported grow zones through dedicated conduit networks.</description>
         <baseCost>800</baseCost>
         <techLevel>Industrial</techLevel>
         <tab>Main</tab>

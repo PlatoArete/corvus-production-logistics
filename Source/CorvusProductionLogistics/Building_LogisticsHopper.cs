@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Text;
 using RimWorld;
 using Verse;
 
@@ -6,6 +7,34 @@ namespace CorvusProductionLogistics;
 
 public abstract class Building_LogisticsHopperBase : Building_Storage
 {
+    protected abstract string ModeLabel { get; }
+
+    protected abstract string ModeDescription { get; }
+
+    public override string GetInspectString()
+    {
+        StringBuilder sb = new StringBuilder();
+        string baseString = base.GetInspectString();
+        if (!baseString.NullOrEmpty())
+        {
+            sb.AppendLine(baseString);
+        }
+
+        sb.AppendLine($"Mode: {ModeLabel}");
+        sb.AppendLine(ModeDescription);
+
+        if (Spawned && LogisticsNetworkUtility.TryGetConnectedStorageBuildings(this, out HashSet<Building_Storage> storages))
+        {
+            sb.AppendLine($"Linked storages: {storages.Count}");
+        }
+        else
+        {
+            sb.AppendLine("Linked storages: 0");
+        }
+
+        return sb.ToString().TrimEndNewlines();
+    }
+
     protected bool TryPlaceItemInStorage(Thing item, Building_Storage storage)
     {
         if (item == null || storage == null || storage.Map != Map || storage is Building_LogisticsHopperBase)
@@ -64,6 +93,10 @@ public abstract class Building_LogisticsHopperBase : Building_Storage
 
 public class Building_InputLogisticsHopper : Building_LogisticsHopperBase
 {
+    protected override string ModeLabel => "Input";
+
+    protected override string ModeDescription => "Accepts items placed here and forwards them into valid connected storage.";
+
     protected override void Tick()
     {
         base.Tick();
@@ -98,6 +131,10 @@ public class Building_InputLogisticsHopper : Building_LogisticsHopperBase
 
 public class Building_OutputLogisticsHopper : Building_LogisticsHopperBase
 {
+    protected override string ModeLabel => "Static output";
+
+    protected override string ModeDescription => "Pulls items matching this hopper's storage filter from connected storage.";
+
     protected override void Tick()
     {
         base.Tick();

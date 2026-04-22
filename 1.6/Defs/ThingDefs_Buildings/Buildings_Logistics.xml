@@ -3,12 +3,12 @@
     <ThingDef ParentName="BuildingBase" Name="Corvus_LogisticsConduitBase">
         <defName>Corvus_LogisticsConduit</defName>
         <label>logistics conduit</label>
-        <description>A conduit-like logistics line used to form a production network between nearby worktables and storage buildings.</description>
+        <description>A floor-mounted logistics tube that links storage buildings, worktables, hoppers, and supported grow zones into a production network.</description>
         <thingClass>CorvusProductionLogistics.Building_LogisticsConduit</thingClass>
         <category>Building</category>
         <noRightClickDraftAttack>true</noRightClickDraftAttack>
         <graphicData>
-            <texPath>Things/Building/Linked/PowerConduit_Atlas</texPath>
+            <texPath>Things/Building/Logistics/LogisticsConduit_Atlas</texPath>
             <graphicClass>Graphic_Single</graphicClass>
             <linkType>Transmitter</linkType>
             <linkFlags>
@@ -18,7 +18,7 @@
                 <rect>(0,0.35,1,0.3)</rect>
             </damageData>
         </graphicData>
-        <uiIconPath>Things/Building/Linked/PowerConduit_MenuIcon</uiIconPath>
+        <uiIconPath>Things/Building/Logistics/LogisticsConduit_MenuIcon</uiIconPath>
         <uiIconScale>0.7</uiIconScale>
         <building>
             <ai_chillDestination>false</ai_chillDestination>
@@ -69,7 +69,7 @@
     <ThingDef ParentName="Corvus_LogisticsConduitBase">
         <defName>Corvus_HiddenLogisticsConduit</defName>
         <label>hidden logistics conduit</label>
-        <description>Hidden logistics tubing for linking worktables and storage buildings without leaving visible conduit lines on the floor.</description>
+        <description>Concealed logistics tubing for linking storage, worktables, hoppers, and supported grow zones without leaving visible conduit lines on the floor. Select or place hidden logistics conduits to view their overlay.</description>
         <graphicData>
             <color>(0,0,0,0)</color>
             <shaderType>Transparent</shaderType>
@@ -96,17 +96,21 @@
 
     <ThingDef ParentName="StorageShelfBase">
         <defName>Corvus_LogisticsHopper</defName>
-        <label>input logistics hopper</label>
-        <description>A small logistics endpoint that accepts items from adjacent machines or external mod systems, then pushes them into valid connected storage on the logistics network.</description>
+        <label>logistics input hopper</label>
+        <description>A small input endpoint for machines and mod systems that place products on nearby storage. Items placed here are pushed into valid connected storage on the same logistics network.</description>
         <thingClass>CorvusProductionLogistics.Building_InputLogisticsHopper</thingClass>
         <graphicData>
-            <texPath>Things/Building/Furniture/ShelfSmall</texPath>
-            <graphicClass>Graphic_Multi</graphicClass>
-            <drawSize>(2,2)</drawSize>
-            <color>(0.55,0.8,0.95)</color>
+            <texPath>Things/Building/Logistics/LogisticsInputHopper</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <drawSize>(1,1)</drawSize>
+            <drawRotated>false</drawRotated>
+            <allowFlip>false</allowFlip>
         </graphicData>
+        <uiIconPath>Things/Building/Logistics/LogisticsInputHopper</uiIconPath>
+        <uiIconScale>0.65</uiIconScale>
         <tickerType>Normal</tickerType>
         <size>(1,1)</size>
+        <rotatable>false</rotatable>
         <designationCategory>Storage</designationCategory>
         <uiOrder>2020</uiOrder>
         <costStuffCount>15</costStuffCount>
@@ -173,17 +177,21 @@
 
     <ThingDef ParentName="StorageShelfBase">
         <defName>Corvus_OutputLogisticsHopper</defName>
-        <label>static output logistics hopper</label>
-        <description>A small logistics endpoint that pulls items matching its storage filter from connected storage and exposes them for adjacent machines or external mod systems.</description>
+        <label>logistics output hopper</label>
+        <description>A small output endpoint for machines and mod systems that need items exposed on a storage cell. It pulls items matching its storage filter from connected storage on the same logistics network.</description>
         <thingClass>CorvusProductionLogistics.Building_OutputLogisticsHopper</thingClass>
         <graphicData>
-            <texPath>Things/Building/Furniture/ShelfSmall</texPath>
-            <graphicClass>Graphic_Multi</graphicClass>
-            <drawSize>(2,2)</drawSize>
-            <color>(0.95,0.8,0.55)</color>
+            <texPath>Things/Building/Logistics/LogisticsOutputHopper</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <drawSize>(1,1)</drawSize>
+            <drawRotated>false</drawRotated>
+            <allowFlip>false</allowFlip>
         </graphicData>
+        <uiIconPath>Things/Building/Logistics/LogisticsOutputHopper</uiIconPath>
+        <uiIconScale>0.65</uiIconScale>
         <tickerType>Normal</tickerType>
         <size>(1,1)</size>
+        <rotatable>false</rotatable>
         <designationCategory>Storage</designationCategory>
         <uiOrder>2021</uiOrder>
         <costStuffCount>15</costStuffCount>
