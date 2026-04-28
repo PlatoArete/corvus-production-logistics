@@ -100,13 +100,14 @@ public static class WorkGiverDoBillPatches
                 continue;
             }
 
-            __result.placedThings.Add(new ThingCountClass(sourceThing, requiredCount));
-            indicesToRemove.Add(queueIndex);
-
             if (!pawn.Reserve(sourceThing, __result, 1, -1, null, errorOnFailed: false))
             {
                 Log.Warning($"Corvus Production Logistics could not reserve linked ingredient {sourceThing} for {pawn}.");
+                continue;
             }
+
+            __result.placedThings.Add(new ThingCountClass(sourceThing, requiredCount));
+            indicesToRemove.Add(queueIndex);
         }
 
         for (int i = indicesToRemove.Count - 1; i >= 0; i--)

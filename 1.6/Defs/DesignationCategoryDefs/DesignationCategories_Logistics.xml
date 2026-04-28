@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+    <DesignationCategoryDef>
+        <defName>Corvus_Logistics</defName>
+        <label>logistics</label>
+        <order>130</order>
+        <specialDesignatorClasses>
+            <li>Designator_Cancel</li>
+            <li>Designator_Deconstruct</li>
+        </specialDesignatorClasses>
+        <researchPrerequisites>
+            <li>Corvus_ProductionLogistics</li>
+        </researchPrerequisites>
+    </DesignationCategoryDef>
+</Defs>

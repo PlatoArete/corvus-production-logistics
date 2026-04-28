@@ -53,7 +53,7 @@
         <neverMultiSelect>true</neverMultiSelect>
         <soundImpactDefault>BulletImpact_Metal</soundImpactDefault>
         <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
-        <designationCategory>Storage</designationCategory>
+        <designationCategory>Corvus_Logistics</designationCategory>
         <uiOrder>2010</uiOrder>
         <constructEffect>ConstructMetal</constructEffect>
         <clearBuildingArea>false</clearBuildingArea>
@@ -111,7 +111,7 @@
         <tickerType>Normal</tickerType>
         <size>(1,1)</size>
         <rotatable>false</rotatable>
-        <designationCategory>Storage</designationCategory>
+        <designationCategory>Corvus_Logistics</designationCategory>
         <uiOrder>2020</uiOrder>
         <costStuffCount>15</costStuffCount>
         <costList>
@@ -192,7 +192,7 @@
         <tickerType>Normal</tickerType>
         <size>(1,1)</size>
         <rotatable>false</rotatable>
-        <designationCategory>Storage</designationCategory>
+        <designationCategory>Corvus_Logistics</designationCategory>
         <uiOrder>2021</uiOrder>
         <costStuffCount>15</costStuffCount>
         <costList>
