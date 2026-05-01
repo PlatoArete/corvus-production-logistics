@@ -34,7 +34,12 @@ public static class InputHopperDebug
         }
 
         Building_Storage sourceStorage = LogisticsNetworkUtility.GetStorageBuildingForItem(thing);
-        return sourceStorage != null && sourceStorage != hopper;
+        if (sourceStorage != null && sourceStorage != hopper)
+        {
+            return true;
+        }
+
+        return !LogisticsNetworkUtility.HasAvailableConnectedStorageCapacityFor(hopper, thing);
     }
 
     public static bool ShouldBlockAsConnectedStorageRebalance(

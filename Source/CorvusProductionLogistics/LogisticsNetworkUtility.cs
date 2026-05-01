@@ -94,6 +94,29 @@ public static class LogisticsNetworkUtility
         return TryGetConnectedStorageBuildings(first, out HashSet<Building_Storage> storages) && storages.Contains(second);
     }
 
+    public static bool HasAvailableConnectedStorageCapacityFor(Building building, Thing item)
+    {
+        if (building == null || item == null || building.Map == null || item.Map != building.Map)
+        {
+            return false;
+        }
+
+        if (!TryGetConnectedStorageBuildings(building, out HashSet<Building_Storage> storages))
+        {
+            return false;
+        }
+
+        foreach (Building_Storage storage in storages)
+        {
+            if (CanStorageAcceptItemDirectly(storage, item))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public static IEnumerable<Thing> GetNetworkedItemsForBillGiver(Building building)
     {
         if (!TryGetConnectedStorageBuildings(building, out HashSet<Building_Storage> storages))
@@ -213,6 +236,48 @@ public static class LogisticsNetworkUtility
         for (int i = 0; i < thingList.Count; i++)
         {
             if (thingList[i] is Building_Storage and not Building_LogisticsHopperBase)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private static bool CanStorageAcceptItemDirectly(Building_Storage storage, Thing item)
+    {
+        if (storage == null || item == null || storage.Map == null || item.Map != storage.Map)
+        {
+            return false;
+        }
+
+        if (!storage.GetStoreSettings().AllowedToAccept(item))
+        {
+            return false;
+        }
+
+        int maxItemsInCell = Math.Max(1, storage.def.building.maxItemsInCell);
+        foreach (IntVec3 cell in storage.OccupiedRect())
+        {
+            List<Thing> thingList = cell.GetThingList(storage.Map);
+            int itemStacks = 0;
+
+            for (int i = 0; i < thingList.Count; i++)
+            {
+                Thing existing = thingList[i];
+                if (existing == storage || !existing.Spawned || existing.def.category != ThingCategory.Item)
+                {
+                    continue;
+                }
+
+                itemStacks++;
+                if (existing.CanStackWith(item) && existing.stackCount < existing.def.stackLimit)
+                {
+                    return true;
+                }
+            }
+
+            if (itemStacks < maxItemsInCell)
             {
                 return true;
             }
